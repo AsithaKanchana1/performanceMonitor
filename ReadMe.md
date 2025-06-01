@@ -94,18 +94,18 @@ docker run -d --name performance-logger `
 
 ## Explanation of docker run options
 
-- -d: Runs the container in detached mode (in the background). If you want to see the live console output of the script, omit this flag.
-- --name performance-logger: Assigns a memorable name to your running container. This makes it easier to manage (e.g., stop or view logs).
-- -v "$(pwd)/my_host_logs:/app/performance_logs" (Linux/macOS) or -v "${PWD}/my_host_logs:/app/performance_logs" (Windows PowerShell): This is a volume mount.
+- `-d` Runs the container in detached mode (in the background). If you want to see the live console output of the script, omit this flag.
+- `--name` `performance-logger` Assigns a memorable name to your running container. This makes it easier to manage (e.g., stop or view logs).
+- `-v "$(pwd)/my_host_logs/app/performance_logs"` (Linux/macOS) or `-v "${PWD}/my_host_logs/app/performance_logs"` (Windows PowerShell) This is a volume mount.
 - It maps a directory on your host PC to a directory inside the container.
-- $(pwd)/my_host_logs or ${PWD}/my_host_logs creates a directory named my_host_logs in your current working directory on the host. This is where the CSV log files will be accessible from your host machine.
-- /app/performance_logs is the path inside the container where the Python script (as configured by the LOG_DIRECTORY environment variable) will write the log files.
-- This is crucial for persisting your log data even if the container is stopped or removed, and for easily accessing the logs.
-- system-monitor-app - The name of the Docker image you built in the previous step.
+- `$(pwd)/my_host_logs` or `${PWD}/my_host_logs` creates a directory named `my_host_logs` in your current working directory on the host. This is where the CSV log files will be accessible from your host machine.
+- `/app/performance_logs` is the path inside the container where the Python script (as configured by the *LOG_DIRECTORY* environment variable) will write the log files.
+- This is crucial for persisting your log data even if the container is *stopped* or *removed*, and for easily accessing the logs.
+- `system-monitor-app` The name of the Docker image you built in the previous step.
 
 
 ### Container's Standard Output (stdout)
-The Python script prints a summary of each log entry to the console. You can view these logs (even if running in detached mode) using:
+The Python script prints a summary of each log entry to the console. You can view these logs (even if running in detached mode) using
 
 ```bash
 docker logs performance-logger
@@ -119,25 +119,25 @@ docker logs -f performance-logger
 
 ### CSV Log File on Your Host Machine
 
-The actual CSV log data (e.g., system_performance.csv) will be saved in the host directory you specified in the volume mount (e.g., my_host_logs in your project directory). You can open this CSV file with any spreadsheet program or text editor.
+The actual CSV log data (e.g., system_performance.csv) will be saved in the host directory you specified in the volume mount (e.g., my_host_logs in your project directory). *You can open this CSV file with any spreadsheet program or text editor.*
 
 ## Stopping and Removing the Container
 ### Stop the Container:
 
-To stop the performance-logger container from running:
+To stop the *performance-logger* container from running
 ```bash
 docker stop performance-logger
 ```
 
 ### Remove the Container:
-Once stopped, you can remove the container if you no longer need it. This does not remove the image or your log files (if you used a volume mount).
+Once stopped, you can remove the container if you no longer need it. This *does not remove the image or your log files* (if you used a volume mount).
 ```Bash
 docker rm performance-logger
 ```
 
 ## Customization
 
-in this document i havent tuch how to custermize the script ill be updating it in futerue
+in this document i haven't tuch how to custermize the script ill be updating it in futerue
 
-Updated Date :2025-6-1
-@Asitha Kanchana Palliyaguru
+*Updated Date :2025-6-1*
+*@Asitha Kanchana Palliyaguru*
